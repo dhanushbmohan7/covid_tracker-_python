@@ -1,0 +1,46 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>covid tracker</title>
+    <link rel="stylesheet" href="{% static 'cssmain/style.css'%}">
+   
+</head>
+<body>
+   <div class="container">
+{% for data in world%}
+<h2>{{data.total_confirmed}}</h2>
+<h2>{{data.total_active}}</h2>
+<h2>{{data.total_deaths}}</h2>
+<h2>{{data.total_recovered}}</h2>
+{% endfor %}
+    <div class="covid">
+        <h2>covid tracker</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="country" id="country" placeholder="enter country">
+            <input type="submit" value="go">
+        </form>
+    </div>
+    
+    
+    <br>
+    <div class="result">
+        {% if country and confirmed and new_cases and active and recovered and deaths %}
+   <h3></h3>
+   <h3>country:{{country}}</h3>
+   <h3>confirmed:{{confirmed}}</h3>
+   <h3>active:{{active}}</h3>
+   <h3>recovered:{{recovered}}</h3>
+   <h3>deaths:{{deaths}}</h3>
+   <h3>new cases:{{new_cases}}</h3>
+    {% endif %}
+    
+    </div>
+   
+   </div>
+   
+</body>
+</html>
